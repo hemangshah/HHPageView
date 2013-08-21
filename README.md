@@ -30,12 +30,30 @@ Note: If you wish to add HHPageController through IB then just drag and drop a U
     //Show when you ready!
     [pageController load];
     
-<h3>Delegate</h3>
+<h3>HHPageController Delegate</h3>
 
     //To track of page change HHPageController is coming with a delegate.
     - (void) HHPageController:(HHPageControl *)pageController currentIndex:(int)currentIndex
     {
         NSLog(@"Current Page Index %d",currentIndex);
+    }
+    
+<h3>UIScrollView Delegate</h3>    
+    
+    - (void)scrollViewDidEndDecelerating:(UIScrollView *)scroll
+    {
+        //If its our scrollview
+        if([scroll isEqual:scrollView])
+        {
+            //If its not dragging
+            if(!scroll.isDragging)
+            {
+                //get page number to update HHPageController
+                int pageWidth = scroll.frame.size.width;
+                int page = (floor((scroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1) + 1;
+                [pageController updateStateForPageNumber:page];
+            }
+        }
     }
     
     
