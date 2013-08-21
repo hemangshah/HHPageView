@@ -1,7 +1,7 @@
 HHPageController
 ================
 
-If you ever have the thought of setting images as a place holder then "HHPageController" is the one you can use.
+If you ever have the thought of setting images as a page controller then "HHPageController" is the one you can use.
 
 A sample is added at the end!
 
