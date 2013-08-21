@@ -57,4 +57,11 @@ Note: If you wish to add HHPageController through IB then just drag and drop a U
     }
     
 <h3>Support ARC</h3>
-<a href="http://tinypic.com?ref=s1j4zt" target="_blank"><img src="" border="0" alt="Image and video hosting by TinyPic"></a>
+
+<h3>Screenshots</h3>
+![alt tag](http://i41.tinypic.com/2lkegj9.png)
+![alt tag](http://i43.tinypic.com/2wqbwgz.png)
+
+
+<h3>Test Example</h3>
+https://www.dropbox.com/s/9002ka5pbs5ii6a/TestExample.zip
