@@ -12,8 +12,6 @@
 #define MAX_HEIGHT 20.f
 #define margin_space 5.f
 
-#define UNIQUE_TAG 5252
-
 @implementation HHPageControl
 @synthesize delegate;
 
