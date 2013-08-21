@@ -3,6 +3,8 @@ HHPageController
 
 If you ever have the thought of setting images as a place holder then "HHPageController" is the one you can use.
 
+A sample is added at the end!
+
 <h3>How To Get Started</h3>
 
  1. Add HHPageController.h and HHPageController.m files to your project.
