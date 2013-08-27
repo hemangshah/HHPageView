@@ -15,17 +15,6 @@
 @implementation HHPageControl
 @synthesize delegate;
 
-#pragma mark - Shared Instance
-+ (HHPageControl *)sharedPageController
-{
-    static HHPageControl *sharedInstance = nil;
-	if (sharedInstance == nil)
-	{
-		sharedInstance = [[HHPageControl alloc] init];
-	}
-	return sharedInstance;
-}
-
 #pragma mark - Controller Life Cycle
 - (id)initWithFrame:(CGRect)frame
 {

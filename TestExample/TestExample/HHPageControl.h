@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 typedef enum HHPageControlType
 {
     HHPageControlHorizontalType = 0,HHPageControlVerticalType = 1
@@ -14,9 +15,7 @@ typedef enum HHPageControlType
 
 @class HHPageControl;
 
-@protocol HHPageControllerDelegate<NSObject>
-- (void) HHPageController:(HHPageControl *)pageController currentIndex:(int)currentIndex;
-@end
+@protocol HHPageControllerDelegate;
 
 @interface HHPageControl : UIView
 {
@@ -28,11 +27,14 @@ typedef enum HHPageControlType
 }
 @property (nonatomic, retain) id<HHPageControllerDelegate> delegate;
 
-+ (HHPageControl *)sharedPageController;
 - (void) setImageActiveState:(UIImage *)active InActiveState:(UIImage *)inactive;
 - (void) setNumberOfPages:(int)pages;
 - (void) setCurrentPage:(int)current;
 - (void) load;
 - (void) updateStateForPageNumber:(int)page;
 - (void) setHHPageControlType:(HHPageControlType)pageControllertype;
+@end
+
+@protocol HHPageControllerDelegate<NSObject>
+- (void) HHPageController:(HHPageControl *)pageController currentIndex:(int)currentIndex;
 @end
