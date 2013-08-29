@@ -212,7 +212,7 @@
 }
 
 #pragma mark - HHPageController Delegate
-- (void) HHPageController:(HHPageControl *)pController currentIndex:(int)currentIndex
+- (void) HHPageController:(HHPageController *)pController currentIndex:(int)currentIndex
 {
     UIScrollView *baseScrollView = (UIScrollView *) [pController baseScrollView];
     

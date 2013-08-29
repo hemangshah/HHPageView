@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Hemang Shah. All rights reserved.
 //
 
-#import "HHPageControl.h"
+#import "HHPageController.h"
 
 #define MAX_WIDTH 320.f
 #define MAX_HEIGHT 20.f
 #define margin_space 5.f
 
-@implementation HHPageControl
+@implementation HHPageController
 @synthesize delegate;
 @synthesize baseScrollView;
 

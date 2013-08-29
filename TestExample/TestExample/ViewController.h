@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HHPageControl.h"
+#import "HHPageController.h"
 
 @interface ViewController : UIViewController<HHPageControllerDelegate>
 {
-    IBOutlet HHPageControl *pageController;
-    IBOutlet HHPageControl *pageControllerVertical;
+    IBOutlet HHPageController *pageController;
+    IBOutlet HHPageController *pageControllerVertical;
     
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIScrollView *scrollViewVertical;

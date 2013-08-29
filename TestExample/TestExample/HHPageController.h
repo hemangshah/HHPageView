@@ -13,11 +13,11 @@ typedef enum HHPageControlType
     HHPageControlHorizontalType = 0,HHPageControlVerticalType = 1
 }HHPageControlType;
 
-@class HHPageControl;
+@class HHPageController;
 
 @protocol HHPageControllerDelegate;
 
-@interface HHPageControl : UIView
+@interface HHPageController : UIView
 {
     @private
     UIImage *activeImage, *inactiveImage;
@@ -37,5 +37,5 @@ typedef enum HHPageControlType
 @end
 
 @protocol HHPageControllerDelegate<NSObject>
-- (void) HHPageController:(HHPageControl *)pageController currentIndex:(int)currentIndex;
+- (void) HHPageController:(HHPageController *)pageController currentIndex:(int)currentIndex;
 @end

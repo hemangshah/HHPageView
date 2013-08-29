@@ -90,6 +90,7 @@
 						<string key="NSFrame">{{0, 228}, {160, 32}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -288,11 +289,11 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="32.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="33.CustomClassName">HHPageControl</string>
+				<string key="33.CustomClassName">HHPageController</string>
 				<string key="33.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="9.CustomClassName">HHPageControl</string>
+				<string key="9.CustomClassName">HHPageController</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
@@ -304,30 +305,30 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
-					<string key="className">HHPageControl</string>
+					<string key="className">HHPageController</string>
 					<string key="superclassName">UIView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/HHPageControl.h</string>
+						<string key="minorKey">./Classes/HHPageController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">ViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="pageController">HHPageControl</string>
-						<string key="pageControllerVertical">HHPageControl</string>
+						<string key="pageController">HHPageController</string>
+						<string key="pageControllerVertical">HHPageController</string>
 						<string key="scrollView">UIScrollView</string>
 						<string key="scrollViewVertical">UIScrollView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="pageController">
 							<string key="name">pageController</string>
-							<string key="candidateClassName">HHPageControl</string>
+							<string key="candidateClassName">HHPageController</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="pageControllerVertical">
 							<string key="name">pageControllerVertical</string>
-							<string key="candidateClassName">HHPageControl</string>
+							<string key="candidateClassName">HHPageController</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="scrollView">
 							<string key="name">scrollView</string>
