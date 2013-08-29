@@ -1,19 +1,16 @@
 HHPageController
 ================
 
-If you ever have the thought of setting images as a page controller then "HHPageController" is the one you can use.
-
-A sample is added at the end!
+If you ever have the thought of setting images for a page control then "HHPageController" is the one you can use.
 
 <h3>How To Get Started</h3>
 
  1. Add HHPageController.h and HHPageController.m files to your project.
  2. #import "HHPageController.h" where you want to use HHPageController.
- 3. If you want you can use it either way, set the HHPageController in Interface Builder (IB) or create it dynamically.
+ 3. You can use it in two ways, set the HHPageController in Interface Builder (IB) or create it dynamically.
  4. Check the "Example" below to get start - its easy!
  
-
-Note: If you wish to add HHPageController through IB then just drag and drop a UIView on XIB or StoryBoard, change its type from UIView to HHPageController, and that's it! Now you need to create IBOutlet for HHPageController and bind the object to the IB.
+Note: If you planning to add HHPageController through IB then just drag and drop a UIView on XIB or StoryBoard, change its type from UIView to HHPageController, and that's it! Now you need to create IBOutlet for HHPageController and bind the object with the IB.
 
 <h3>Example Usage</h3>
 
@@ -63,10 +60,6 @@ Note: If you wish to add HHPageController through IB then just drag and drop a U
 <h3>Screenshots</h3>
 ![alt tag](http://i41.tinypic.com/2lkegj9.png)
 ![alt tag](http://i43.tinypic.com/2wqbwgz.png)
-
-
-<h3>Test Example</h3>
-https://www.dropbox.com/s/9002ka5pbs5ii6a/TestExample.zip
 
 
 <h3>Licence<h3>
