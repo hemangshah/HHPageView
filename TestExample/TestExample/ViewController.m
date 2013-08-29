@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 
+#define HORIZONTAL_SCROLLVIEW_TAG 1
+#define VERTICAL_SCROLLVIEW_TAG 2
+
 @interface ViewController ()
 
 @end
@@ -15,7 +18,8 @@
 @implementation ViewController
 
 #pragma mark - Generate Random Color (RGB)
-- (float)getRandomInt {
+- (float)getRandomInt
+{
     return (arc4random()%255)/255.f;
 }
 
@@ -44,7 +48,7 @@
     //set content size of the scrollview
     [scrollView setContentSize:CGSizeMake(x, scrollView.frame.size.height)];
     
-    //set scrollview properties (not needed)
+    //set scrollview properties (needed for better work)
     [scrollView setPagingEnabled:YES];
     [scrollView setShowsHorizontalScrollIndicator:NO];
 }
@@ -73,43 +77,40 @@
     //set content size of the scrollview
     [scrollViewVertical setContentSize:CGSizeMake(scrollView.frame.size.width, y)];
     
-    //set scrollview properties (not needed)
+    //set scrollview properties (needed for better work)
     [scrollViewVertical setPagingEnabled:YES];
-    [scrollViewVertical setShowsHorizontalScrollIndicator:NO];
+    [scrollViewVertical setShowsVerticalScrollIndicator:NO];
 }
 
-#pragma mark - View Life Cycle
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    int numberOfPages = 10;
-    
-    [self addNoOfPages:numberOfPages];
-    
-    //Here's the configuration for HHPageController
+- (void) configureHorizontalControllerWithTotalPages:(int)totalPages {
     
     //Set delegate to the page controller object. To handle page change event.
     [pageController setDelegate:self];
+    
+    //Set Base View
+    //Note : If you've only single HHPageController for any of the view then no need to set baseScrollView.
+    [pageController setBaseScrollView:scrollView];
     
     //Set Images for Active and Inactive state.
     [pageController setImageActiveState:[UIImage  imageNamed:@"selected.png"] InActiveState:[UIImage  imageNamed:@"unselected.png"]];
     
     //Tell PageController, the number of pages you want to show.
-    [pageController setNumberOfPages:numberOfPages];
+    [pageController setNumberOfPages:totalPages];
     
     //Tell PageController to show page from this page index.
     [pageController setCurrentPage:3];
     
     //Show when you ready!
     [pageController load];
-    
-    // Vertical
-    
-    [self addNoOfPagesVertically:numberOfPages];
+}
+
+- (void) configureVerticalControllerWithTotalPages:(int)totalPages {
     
     //Set delegate to the page controller object. To handle page change event.
     [pageControllerVertical setDelegate:self];
+    
+    //Note : If you've only single HHPageController for any of the view then no need to set baseScrollView.
+    [pageControllerVertical setBaseScrollView:scrollViewVertical];
     
     [pageControllerVertical setHHPageControlType:HHPageControlVerticalType];
     
@@ -117,25 +118,61 @@
     [pageControllerVertical setImageActiveState:[UIImage  imageNamed:@"selected.png"] InActiveState:[UIImage  imageNamed:@"unselected.png"]];
     
     //Tell PageController, the number of pages you want to show.
-    [pageControllerVertical setNumberOfPages:numberOfPages];
+    [pageControllerVertical setNumberOfPages:totalPages];
     
     //Tell PageController to show page from this page index.
     [pageControllerVertical setCurrentPage:3];
     
     //Show when you ready!
     [pageControllerVertical load];
-    
-    
-    //------Add HHPageController dynamically---------------------------------------------------------------------
+}
 
-//    HHPageControl *pageController1 = [[HHPageControl alloc] initWithFrame:CGRectMake(0, 120, 160, 32)];
-//    [self.view addSubview:pageController1];
-//    [pageController1 setDelegate:self];
-//    [pageController1 setHHPageControlType:HHPageControlVerticalType];
-//    [pageController1 setImageActiveState:[UIImage  imageNamed:@"selected.png"] InActiveState:[UIImage  imageNamed:@"unselected.png"]];
-//    [pageController1 setNumberOfPages:numberOfPages];
-//    [pageController1 setCurrentPage:3];
-//    [pageController1 load];
+#pragma mark - View Life Cycle
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    /*
+     
+     IMPORTANT NOTES:
+     
+     1. Never set tag for HHPageControl object.
+     
+     2. If you've more than one scrollview in the same view, then have you set set tag for each of it. see scrollview and HHPageControl delegates for example.
+     
+     3. If you're adding HHPageControl vertically from IB then you've to set it manually until you want get exact output.
+     
+     4. These are the properties you always have to set, however you add HHPageControl, either in IB or dynamically.
+     
+        setDelegate:
+        setBaseScrollView:
+        setImageActiveState: InActiveState:
+        setNumberOfPages:
+        setCurrentPage:
+     
+     5. You can also add HHPageController dynamically (see the example below)
+     
+        HHPageControl *pageController1 = [[HHPageControl alloc] initWithFrame:CGRectMake(0, 120, 160, 32)];
+        [self.view addSubview:pageController1];
+        [pageController1 setDelegate:self];
+        [pageController1 setHHPageControlType:HHPageControlVerticalType];
+        [pageController1 setImageActiveState:[UIImage  imageNamed:@"selected.png"] InActiveState:[UIImage  imageNamed:@"unselected.png"]];
+        [pageController1 setNumberOfPages:numberOfPages];
+        [pageController1 setCurrentPage:3];
+        [pageController1 load];
+    */
+    
+    int numberOfPages = 10;
+    
+    // Add your pages in scroll view.
+    
+    //Horizontal Controller ScrollView
+    [self addNoOfPages:numberOfPages];
+    [self configureHorizontalControllerWithTotalPages:numberOfPages];
+    
+    //Vertical Controller ScrollView
+    [self addNoOfPagesVertically:numberOfPages];
+    [self configureVerticalControllerWithTotalPages:numberOfPages];
 }
 
 - (void)didReceiveMemoryWarning
@@ -143,49 +180,59 @@
     [super didReceiveMemoryWarning];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    //right now only supprots for portrait orientation
+    return UIInterfaceOrientationPortrait;
+}
+
 - (BOOL) shouldAutorotate {
+    //right now only supprots for portrait orientation
     return NO;
 }
 
 #pragma mark - ScrollView Delegate
-/*
- IMPORTANT -- Its required to implement any of the scrollview delegate
- If paging is not enabled on UIScrollView then use - (void)scrollViewDidScroll:(UIScrollView *)scrollView instead
-*/
-
-//- (void)scrollViewDidScroll:(UIScrollView *)scroll
-//{
-//    if([scroll isEqual:scrollView])
-//    {
-//        int pageWidth = scroll.frame.size.width;
-//        int page = (floor((scroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1) + 1;
-//        [pageController updateStateForPageNumber:page];
-//    }
-//}
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scroll
 {
     //If its not dragging
     if(!scroll.isDragging)
     {
-        //get page number to update HHPageController
-//        int pageWidth = scroll.frame.size.width;
-//        int page = (floor((scroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1) + 1;
-//        [pageController updateStateForPageNumber:page];
-        
-        int pageHeight = scroll.frame.size.height;
-        int page = (floor((scroll.contentOffset.y - pageHeight / 2) / pageHeight) + 1) + 1;
-        [pageControllerVertical updateStateForPageNumber:page];
+        if(scroll.tag == HORIZONTAL_SCROLLVIEW_TAG)
+        {
+            //horizontal
+            int pageWidth = scroll.frame.size.width;
+            int page = (floor((scroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1) + 1;
+            [pageController updateStateForPageNumber:page];
+        }else{
+            //vertical
+            int pageHeight = scroll.frame.size.height;
+            int page = (floor((scroll.contentOffset.y - pageHeight / 2) / pageHeight) + 1) + 1;
+            [pageControllerVertical updateStateForPageNumber:page];
+        }
     }
 }
 
 #pragma mark - HHPageController Delegate
 - (void) HHPageController:(HHPageControl *)pController currentIndex:(int)currentIndex
 {
-    NSLog(@"Current Page Index %d",currentIndex);
+    UIScrollView *baseScrollView = (UIScrollView *) [pController baseScrollView];
     
-//    [scrollView setContentOffset:CGPointMake(currentIndex * scrollView.frame.size.width, 0) animated:YES];    
-    
-    [scrollViewVertical setContentOffset:CGPointMake(0, currentIndex * scrollView.frame.size.height) animated:YES];
+    if(baseScrollView)
+    {
+        if(baseScrollView.tag == HORIZONTAL_SCROLLVIEW_TAG)
+        {
+            //horizontal
+            [baseScrollView setContentOffset:CGPointMake(currentIndex * scrollView.frame.size.width, 0) animated:YES];
+        }
+        else
+        {
+            //vertical
+            [baseScrollView setContentOffset:CGPointMake(0, currentIndex * scrollView.frame.size.height) animated:YES];
+        }
+    }
+    else
+    {
+        //If you've only single HHPageController for any of the view then no need to set baseScrollView.
+        NSLog(@"You forgot to set baseScrollView for the HHPageController object!");
+    }
 }
 @end

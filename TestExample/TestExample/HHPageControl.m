@@ -14,16 +14,7 @@
 
 @implementation HHPageControl
 @synthesize delegate;
-
-#pragma mark - Controller Life Cycle
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
+@synthesize baseScrollView;
 
 #pragma mark - Setters
 - (void) setImageActiveState:(UIImage *)active InActiveState:(UIImage *)inactive {

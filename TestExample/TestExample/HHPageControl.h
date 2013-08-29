@@ -26,6 +26,7 @@ typedef enum HHPageControlType
     HHPageControlType pageControllerType;
 }
 @property (nonatomic, retain) id<HHPageControllerDelegate> delegate;
+@property (nonatomic, retain) UIScrollView *baseScrollView;
 
 - (void) setImageActiveState:(UIImage *)active InActiveState:(UIImage *)inactive;
 - (void) setNumberOfPages:(int)pages;
