@@ -54,8 +54,13 @@ Note: If you planning to add HHPageController through IB then just drag and drop
             }
         }
     }
-    
-<h3>Support ARC</h3>
+
+<h3>Features</h3>
+1. Supports Horizontal or Vertical types
+2. Change its UI based on image size.
+3. Easy to implement
+4. Test example added for reference
+5. Support ARC
 
 <h3>Screenshots</h3>
 ![alt tag](http://i41.tinypic.com/2lkegj9.png)
