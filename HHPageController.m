@@ -6,35 +6,15 @@
 //  Copyright (c) 2013 Hemang Shah. All rights reserved.
 //
 
-#import "HHPageControl.h"
+#import "HHPageController.h"
 
 #define MAX_WIDTH 320.f
 #define MAX_HEIGHT 20.f
 #define margin_space 5.f
 
-@implementation HHPageControl
+@implementation HHPageController
 @synthesize delegate;
-
-#pragma mark - Shared Instance
-+ (HHPageControl *)sharedPageController
-{
-    static HHPageControl *sharedInstance = nil;
-	if (sharedInstance == nil)
-	{
-		sharedInstance = [[HHPageControl alloc] init];
-	}
-	return sharedInstance;
-}
-
-#pragma mark - Controller Life Cycle
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
+@synthesize baseScrollView;
 
 #pragma mark - Setters
 - (void) setImageActiveState:(UIImage *)active InActiveState:(UIImage *)inactive {
@@ -48,6 +28,10 @@
 
 - (void) setCurrentPage:(int)current {
     currentPage = current;
+}
+
+- (void) setHHPageControlType:(HHPageControlType)pageControllertype {
+    pageControllerType = pageControllertype;
 }
 
 #pragma mark - Run time calculation / States Frame
@@ -98,10 +82,31 @@
     }
 }
 
+- (void) addStatesVertically {
+    int y = 0;
+    for(int index = 1; index <= noOfPages; index++) {
+        UIButton *btnState = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnState addTarget:self action:@selector(userTap:) forControlEvents:UIControlEventTouchUpInside];
+        [btnState setTag:index];
+        [btnState setImage:inactiveImage forState:UIControlStateNormal];
+        [btnState setImage:activeImage forState:UIControlStateSelected];
+        if(index == currentPage) {
+            [btnState setSelected:YES];
+        }
+        [btnState setFrame:[self stateFrameWithX:0 Y:y]];
+        [self addSubview:btnState];
+        y+=btnState.frame.size.height;
+    }
+}
+
 #pragma mark - Update Self 
 - (void) updateContainerViewFrame {
     self.frame = CGRectMake(margin_space, self.frame.origin.y, noOfPages * [self activeSize].width + (margin_space * noOfPages), [self activeSize].height);
     self.center = CGPointMake([self superview].center.x, self.frame.origin.y);
+}
+
+- (void) updateVerticalContainerViewFrame {
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, [self activeSize].width, noOfPages * [self activeSize].height + (margin_space * noOfPages));
 }
 
 #pragma mark - Remove Self 
@@ -114,9 +119,16 @@
 - (void) load {
     if(noOfPages!=0 && noOfPages > 0 && currentPage<=noOfPages) {
         if(activeImage && inactiveImage) {
-            [self updateContainerViewFrame];
-            [self addStates];
+            if(pageControllerType == HHPageControlHorizontalType){
+                [self updateContainerViewFrame];
+                [self addStates];
+            }else{
+                [self updateVerticalContainerViewFrame];
+                [self addStatesVertically];
+            }
+
             [self updateStateForPageNumber:currentPage];
+            
             if(currentPage>1) {
                 [self callDelegateForPageChange:currentPage];
             }
