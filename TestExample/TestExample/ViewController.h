@@ -11,6 +11,7 @@
 
 @interface ViewController : UIViewController<HHPageControllerDelegate>
 {
+    //This is and update
     IBOutlet HHPageController *pageController;
     IBOutlet HHPageController *pageControllerVertical;
     
