@@ -12,7 +12,7 @@
 #define MAX_HEIGHT 20.f
 #define margin_space 5.f
 
-@implementation HHPageController
+@implementation HHPageView
 @synthesize delegate;
 @synthesize baseScrollView;
 
@@ -30,7 +30,7 @@
     currentPage = current;
 }
 
-- (void) setHHPageControlType:(HHPageControlType)pageControllertype {
+- (void) setHHPageViewType:(HHPageViewType)pageControllertype {
     pageControllerType = pageControllertype;
 }
 
@@ -64,10 +64,10 @@
     
     [self updateStateForPageNumber:page];
 
-    if([self.delegate respondsToSelector:@selector(HHPageController:currentIndex:)]) {
+    if([self.delegate respondsToSelector:@selector(HHPageView:currentIndex:)]) {
         NSInteger jumpToIndex = currentPage;
         if(jumpToIndex>0) {
-            [self.delegate HHPageController:self currentIndex:jumpToIndex-1];
+            [self.delegate HHPageView:self currentIndex:jumpToIndex-1];
         }
     }
 }
@@ -135,11 +135,9 @@
 - (void) load {
     if(noOfPages!=0 && noOfPages > 0 && currentPage<=noOfPages) {
         if(activeImage && inactiveImage) {
-            if(pageControllerType == HHPageControlHorizontalType){
-//                [self updateContainerViewFrame];
+            if(pageControllerType == HHPageViewHorizontalType){
                 [self addStates];
             }else{
-//                [self updateVerticalContainerViewFrame];
                 [self addStatesVertically];
             }
 
