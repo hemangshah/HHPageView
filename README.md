@@ -107,7 +107,6 @@
 
 - [ ] Customization options
 - [ ] Swift Support
-- [ ] Examples
 
 <b>Have an idea for improvements of this class?
 Please open an [issue](https://github.com/hemangshah/printer/issues/new).</b>
