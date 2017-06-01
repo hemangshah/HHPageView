@@ -116,7 +116,7 @@
 
 - (void) configureVerticalControllerWithTotalPages:(NSInteger)totalPages {
     
-    //Set delegate to the page controller object. To handle page change event.
+    //Set delegate to the HHPageView object. To handle page change event.
     [pageControllerVertical setDelegate:self];
     
     //Note: You don't need to set baseScrollView if there's only one HHPageView per view controller.
@@ -128,10 +128,10 @@
     //Set Images for Active and Inactive state.
     [pageControllerVertical setImageActiveState:[UIImage  imageNamed:@"selected.png"] InActiveState:[UIImage  imageNamed:@"unselected.png"]];
     
-    //Tell PageController, the number of pages you want to show.
+    //Tell HHPageView, the number of pages you want to show.
     [pageControllerVertical setNumberOfPages:totalPages];
     
-    //Tell PageController to show page from this page index.
+    //Tell HHPageView to show page from this page index.
     [pageControllerVertical setCurrentPage:3];
     
     //Show when you ready!
