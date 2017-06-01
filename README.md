@@ -1,91 +1,43 @@
-HHPageController
-================
+## HHPageView
 
-If you ever have the thought of setting images for a page control then "HHPageController" is the one you can use.
+[![Build Status](https://travis-ci.org/hemangshah/printer.svg?branch=master)](https://travis-ci.org/hemangshah/HHPageView
+![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)
+![Platform](https://img.shields.io/badge/Platforms-iOS-red.svg)
+![MadeWithLove](https://img.shields.io/badge/Made%20with%20%E2%9D%A4-India-green.svg)
 
-<h3>How To Get Started</h3>
+## Installation
 
- 1. Add HHPageController.h and HHPageController.m files to your project.
- 2. #import "HHPageController.h" where you want to use HHPageController.
- 3. You can use it in two ways, set the HHPageController in Interface Builder (IB) or create it dynamically.
- 4. Check the "Example" below to get start - its easy!
- 
-Note: If you planning to add HHPageController through IB then just drag and drop a UIView on XIB or StoryBoard, change its type from UIView to HHPageController, and that's it! Now you need to create IBOutlet for HHPageController and bind the object with the IB.
+**Manually** - Add `HHPageView.h` and  `HHPageView.m` to your Project. **All set**.
 
-<h3>Example Usage</h3>
+## Features
 
-    //Set delegate to the page controller object. To handle page change event.
-    [pageController setDelegate:self];
+1. A replacement of UIPageControl in iOS
+2. Completely written in Objective-C
+3. Add either Horizontally or Vertically
+4. Customization
+5. Dynamic
+6. Easy to setup and use.
+
     
-    //Set Images for Active and Inactive state.
-    [pageController setImageActiveState:[UIImage  imageNamed:@"page_selected.png"] InActiveState:[UIImage  imageNamed:@"page_unselected.png"]];
-    
-    //Tell PageController, the number of pages you want to show.
-    [pageController setNumberOfPages:5];
-    
-    //Tell PageController to show page from this page index.
-    [pageController setCurrentPage:3];
-    
-    //Show when you ready!
-    [pageController load];
-    
-<h3>HHPageController Delegate</h3>
+## ToDo[s]
 
-    //To track of page change HHPageController is coming with a delegate.
-    - (void) HHPageController:(HHPageControl *)pageController currentIndex:(int)currentIndex
-    {
-        NSLog(@"Current Page Index %d",currentIndex);
-    }
+<b><i>[New Features]</i></b>
+
+[ ] More customization
+[ ] Swift support
+[ ] Examples
+
+<b>Have an idea for improvements of this class?
+Please open an [issue](https://github.com/hemangshah/printer/issues/new).</b>
     
-<h3>UIScrollView Delegate</h3>    
-    
-    - (void)scrollViewDidEndDecelerating:(UIScrollView *)scroll
-    {
-        //If its our scrollview
-        if([scroll isEqual:scrollView])
-        {
-            //If its not dragging
-            if(!scroll.isDragging)
-            {
-                //get page number to update HHPageController
-                int pageWidth = scroll.frame.size.width;
-                int page = (floor((scroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1) + 1;
-                [pageController updateStateForPageNumber:page];
-            }
-        }
-    }
+## Credits
 
-<h3>Features</h3>
-1. Supports Horizontal or Vertical types
-2. Change its UI based on image size.
-3. Easy to implement
-4. Test example added for reference
-5. Support ARC
+<b>[Hemang Shah](www.ikiwitech.com)</b>
 
-<h3>Screenshots</h3>
-![alt tag](http://i41.tinypic.com/2lkegj9.png)
-![alt tag](http://i43.tinypic.com/2wqbwgz.png)
+**You can shoot me an [email](http://www.google.com/recaptcha/mailhide/d?k=01IzGihUsyfigse2G9z80rBw==&c=vU7vyAaau8BctOAIJFwHVbKfgtIqQ4QLJaL73yhnB3k=) to contact.**
 
+## License
 
-<h3>Licence<h3>
 The MIT License (MIT)
 
-Copyright (c) 2013 Hemang Shah
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+> Read the [LICENSE](https://github.com/hemangshah/HHPageView/blob/master/LICENSE) file for details.
