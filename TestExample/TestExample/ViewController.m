@@ -41,11 +41,11 @@
     NSInteger h = scrollView.frame.size.height; //height of page
     
     //For testing we're adding UILabels.
-    for(int i = 1; i<= numberOfPages; i++) {
+    for(NSInteger i = 1; i<= numberOfPages; i++) {
         UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(x, y, w, h)];
         lbl.textColor = [UIColor whiteColor];
         [lbl setBackgroundColor:[UIColor colorWithRed:[self getRandomInt] green:[self getRandomInt] blue:[self getRandomInt] alpha:1.0]];
-        [lbl setText:[NSString stringWithFormat:@"Page No. %d",i]];
+        [lbl setText:[NSString stringWithFormat:@"Page #%d",i]];
         [lbl setTextAlignment:NSTextAlignmentCenter];
         lbl.font = [UIFont boldSystemFontOfSize:17.f];
         [scrollView addSubview:lbl];
@@ -72,11 +72,11 @@
     
     //For testing we're adding UILabels.
     
-    for(int i = 1; i<= numberOfPages; i++) {
+    for(NSInteger i = 1; i<= numberOfPages; i++) {
         UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(x, y, w, h)];
         lbl.textColor = [UIColor whiteColor];
         [lbl setBackgroundColor:[UIColor colorWithRed:[self getRandomInt] green:[self getRandomInt] blue:[self getRandomInt] alpha:1.0]];
-        [lbl setText:[NSString stringWithFormat:@"Page No. %d",i]];
+        [lbl setText:[NSString stringWithFormat:@"Page #%d",i]];
         [lbl setTextAlignment:NSTextAlignmentCenter];
         lbl.font = [UIFont boldSystemFontOfSize:17.f];
         [scrollViewVertical addSubview:lbl];
@@ -171,8 +171,6 @@
         [pageController1 setCurrentPage:3];
         [pageController1 load];
     */
-    
-
 }
     
 - (void) viewDidAppear:(BOOL)animated {
@@ -189,11 +187,6 @@
     [self configureVerticalControllerWithTotalPages:numberOfPages];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     //right now only supprots for portrait orientation
     return UIInterfaceOrientationPortrait;
@@ -205,18 +198,15 @@
 }
 
 #pragma mark - ScrollView Delegate
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scroll
-{
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scroll {
     //If its not dragging
-    if(!scroll.isDragging)
-    {
-        if(scroll.tag == HORIZONTAL_SCROLLVIEW_TAG)
-        {
+    if(!scroll.isDragging) {
+        if(scroll.tag == HORIZONTAL_SCROLLVIEW_TAG) {
             //horizontal
             NSInteger pageWidth = scroll.frame.size.width;
             NSInteger page = (floor((scroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1) + 1;
             [pageController updateStateForPageNumber:page];
-        }else{
+        } else {
             //vertical
             NSInteger pageHeight = scroll.frame.size.height;
             NSInteger page = (floor((scroll.contentOffset.y - pageHeight / 2) / pageHeight) + 1) + 1;
@@ -228,7 +218,6 @@
 #pragma mark - HHPageController Delegate
 - (void) HHPageView:(HHPageView *)pageView currentIndex:(NSInteger)currentIndex {
     UIScrollView *baseScrollView = (UIScrollView *) [pageView baseScrollView];
-    
     if(baseScrollView) {
         if(baseScrollView.tag == HORIZONTAL_SCROLLVIEW_TAG) {
             //horizontal
