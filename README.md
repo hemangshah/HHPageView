@@ -9,14 +9,57 @@
 
 **Manually** - Add `HHPageView.h` and  `HHPageView.m` to your Project. **All set**.
 
+## Usage
+
+<b>Common steps:</b>
+
+-  Import HHPageView in your class where you want to use.
+
+- Bind your View Controller with this delegate. 
+
+`HHPageViewDelegate`
+
+`@interface ViewController () <HHPageViewDelegate>`
+
+`@end`
+
+1. Add in Storyboard or XIB.
+ - Define IBOutlet HHPageView *pageView.
+ - You can add a UIView of the size you want.
+ - Change the view type to HHPageView from the Identity Inspector > Custom Class.
+ - Add below code to customzie HHPageView.
+ - Done!
+
+2. You can also add HHPageView programmatically.
+
+`//Set delegate to the pageView object. To handle page changes event.
+[pageView setDelegate:self];
+
+//Set Base View
+//Note: You don't need to set baseScrollView if there's only one HHPageView per view controller.
+[pageView setBaseScrollView:scrollView];
+
+//Set Images for Active and Inactive state.
+[pageView setImageActiveState:[UIImage  imageNamed:@"selected.png"] InActiveState:[UIImage  imageNamed:@"unselected.png"]];
+
+//Tell PageController, the number of pages you want to show.
+[pageView setNumberOfPages:totalPages];
+
+//Set HHPageView Type: Horizontal or Vertical
+[pageControllerVertical setHHPageViewType:HHPageViewVerticalType];
+
+//Tell PageController to show page from this page index.
+[pageView setCurrentPage:3];
+
+//Show when you ready!
+[pageView load];`
+
 ## Features
 
-1. A replacement of UIPageControl in iOS
-2. Completely written in Objective-C
-3. Add either Horizontally or Vertically
-4. Customization
-5. Dynamic
-6. Easy to setup and use.
+1. A replacement of UIPageControl in iOS.
+2. Add either Horizontally or Vertically.
+3. Customization & Dynamic.
+4. Easy to setup and use.
 
 ## Screenshot
 <table>
@@ -29,8 +72,8 @@
 
 <b><i>[New Features]</i></b>
 
-- [ ] More customization
-- [ ] Swift support
+- [ ] Customization options
+- [ ] Swift Support
 - [ ] Examples
 
 <b>Have an idea for improvements of this class?
