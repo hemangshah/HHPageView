@@ -23,9 +23,9 @@
 
 <b><i>[New Features]</i></b>
 
-[ ] More customization
-[ ] Swift support
-[ ] Examples
+- [ ] More customization
+- [ ] Swift support
+- [ ] Examples
 
 <b>Have an idea for improvements of this class?
 Please open an [issue](https://github.com/hemangshah/printer/issues/new).</b>
