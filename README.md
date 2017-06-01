@@ -59,6 +59,31 @@
 
     //Show when you ready!
     [pageView load];
+    
+**Handling Page Change Event**
+
+    - (void) HHPageView:(HHPageView *)pageView currentIndex:(NSInteger)currentIndex {
+        [scrollView setContentOffset:CGPointMake(currentIndex * scrollView.frame.size.width, 0) animated:YES];
+    }
+
+**You should also implement UIScrollView Delegate**
+
+    - (void)scrollViewDidEndDecelerating:(UIScrollView *)scroll {
+        //If its not dragging
+        if(!scroll.isDragging) {
+            if(scroll.tag == HORIZONTAL_SCROLLVIEW_TAG) {
+                //for HHPageView horizontal
+                NSInteger pageWidth = scroll.frame.size.width;
+                NSInteger page = (floor((scroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1) + 1;
+                [pageController updateStateForPageNumber:page];
+            } else {
+                //for HHPageView vertical
+                NSInteger pageHeight = scroll.frame.size.height;
+                NSInteger page = (floor((scroll.contentOffset.y - pageHeight / 2) / pageHeight) + 1) + 1;
+                [pageControllerVertical updateStateForPageNumber:page];
+            }
+        }
+    }
 
 ## Features
 
