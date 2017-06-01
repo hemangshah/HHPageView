@@ -60,13 +60,13 @@
     //Show when you ready!
     [pageView load];
     
-**Handling Page Change Event**
+**3. Handling Page Change Event**
 
     - (void) HHPageView:(HHPageView *)pageView currentIndex:(NSInteger)currentIndex {
         [scrollView setContentOffset:CGPointMake(currentIndex * scrollView.frame.size.width, 0) animated:YES];
     }
 
-**You should also implement UIScrollView Delegate**
+**4. You should also implement UIScrollView Delegate**
 
     - (void)scrollViewDidEndDecelerating:(UIScrollView *)scroll {
         //If its not dragging
