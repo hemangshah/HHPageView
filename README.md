@@ -30,9 +30,10 @@
 - Done!
 
 2. You can also add `HHPageView` programmatically.
-``
 
-    //Set delegate to the pageView object. To handle page changes event.
+<hr>
+
+    `//Set delegate to the pageView object. To handle page changes event.
     [pageView setDelegate:self];
 
     //Set Base View
@@ -52,7 +53,7 @@
     [pageView setCurrentPage:3];
 
     //Show when you ready!
-    [pageView load];
+    [pageView load];`
 
 ## Features
 
