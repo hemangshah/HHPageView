@@ -187,12 +187,6 @@
     //Vertical Controller ScrollView
     [self addNoOfPagesVertically:numberOfPages];
     [self configureVerticalControllerWithTotalPages:numberOfPages];
-    
-    scrollView.layer.borderColor = UIColor.whiteColor.CGColor;
-    scrollView.layer.borderWidth = 5.0;
-    
-    scrollViewVertical.layer.borderColor = UIColor.whiteColor.CGColor;
-    scrollViewVertical.layer.borderWidth = 5.0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -234,10 +228,6 @@
 #pragma mark - HHPageController Delegate
 - (void) HHPageView:(HHPageView *)pageView currentIndex:(NSInteger)currentIndex {
     UIScrollView *baseScrollView = (UIScrollView *) [pageView baseScrollView];
-    
-    NSLog(@"%@", NSStringFromCGSize(baseScrollView.bounds.size));
-    NSLog(@"%@", NSStringFromCGSize(scrollView.bounds.size));
-    NSLog(@"%@", NSStringFromCGSize(scrollViewVertical.bounds.size));
     
     if(baseScrollView) {
         if(baseScrollView.tag == HORIZONTAL_SCROLLVIEW_TAG) {
