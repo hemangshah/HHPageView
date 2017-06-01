@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Hemang Shah. All rights reserved.
 //
 
-#import "HHPageController.h"
+#import "HHPageView.h"
 
 #define MAX_WIDTH 320.f
 #define MAX_HEIGHT 20.f

@@ -7,15 +7,15 @@
 //
 
 #import "ViewController.h"
-#import "HHPageController.h"
+#import "HHPageView.h"
 
 #define HORIZONTAL_SCROLLVIEW_TAG 1
 #define VERTICAL_SCROLLVIEW_TAG 2
 
-@interface ViewController ()<HHPageControllerDelegate> {
+@interface ViewController ()<HHPageViewDelegate> {
     
-    IBOutlet HHPageController *pageController;
-    IBOutlet HHPageController *pageControllerVertical;
+    IBOutlet HHPageView *pageController;
+    IBOutlet HHPageView *pageControllerVertical;
     
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIScrollView *scrollViewVertical;
@@ -97,7 +97,7 @@
     [pageController setDelegate:self];
     
     //Set Base View
-    //Note : If you've only single HHPageController for any of the view then no need to set baseScrollView.
+    //Note : If you've only single HHPageView for any of the view then no need to set baseScrollView.
     [pageController setBaseScrollView:scrollView];
     
     //Set Images for Active and Inactive state.
@@ -118,10 +118,10 @@
     //Set delegate to the page controller object. To handle page change event.
     [pageControllerVertical setDelegate:self];
     
-    //Note : If you've only single HHPageController for any of the view then no need to set baseScrollView.
+    //Note : If you've only single HHPageView for any of the view then no need to set baseScrollView.
     [pageControllerVertical setBaseScrollView:scrollViewVertical];
     
-    [pageControllerVertical setHHPageControlType:HHPageControlVerticalType];
+    [pageControllerVertical setHHPageViewType:HHPageViewVerticalType];
     
     //Set Images for Active and Inactive state.
     [pageControllerVertical setImageActiveState:[UIImage  imageNamed:@"selected.png"] InActiveState:[UIImage  imageNamed:@"unselected.png"]];
@@ -159,7 +159,7 @@
         setNumberOfPages:
         setCurrentPage:
      
-     5. You can also add HHPageController dynamically (see the example below)
+     5. You can also add HHPageView dynamically (see the example below)
      
         HHPageControl *pageController1 = [[HHPageControl alloc] initWithFrame:CGRectMake(0, 120, 160, 32)];
         [self.view addSubview:pageController1];
@@ -219,9 +219,8 @@
 }
 
 #pragma mark - HHPageController Delegate
-- (void) HHPageController:(HHPageController *)pController currentIndex:(NSInteger)currentIndex {
-    UIScrollView *baseScrollView = (UIScrollView *) [pController baseScrollView];
-    
+- (void) HHPageView:(HHPageView *)pageView currentIndex:(NSInteger)currentIndex {
+    UIScrollView *baseScrollView = (UIScrollView *) [pageView baseScrollView];
     if(baseScrollView) {
         if(baseScrollView.tag == HORIZONTAL_SCROLLVIEW_TAG) {
             //horizontal
@@ -232,7 +231,7 @@
         }
     } else {
         //If you've only single HHPageController for any of the view then no need to set baseScrollView.
-        NSLog(@"You forgot to set baseScrollView for the HHPageController object!");
+        NSLog(@"You forgot to set baseScrollView for the HHPageView object!");
     }
 }
 @end
