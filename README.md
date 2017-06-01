@@ -36,26 +36,27 @@
 
 **2. You can also add `HHPageView` programmatically.** 
 
+    //Create HHPageView Instance with initial frame.
     HHPageView *pageView = [[HHPageView alloc] initWithFrame:CGRectMake(0, 0, 160, 32)];
     [self.view addSubview:pageView];
 
     //Set delegate to the pageView object. To handle page changes event.
     [pageView setDelegate:self];
 
-    //Set Base View
+    //Set Base View.
     //Note: You don't need to set baseScrollView if there's only one HHPageView per view controller.
     [pageView setBaseScrollView:scrollView];
 
     //Set Images for Active and Inactive state.
     [pageView setImageActiveState:[UIImage  imageNamed:@"selected.png"] InActiveState:[UIImage  imageNamed:@"unselected.png"]];
 
-    //Tell PageController, the number of pages you want to show.
+    //Tell HHPageView, the number of pages you want to show.
     [pageView setNumberOfPages:totalPages];
 
-    //Set HHPageView Type: Horizontal or Vertical
+    //Set HHPageView Type: Horizontal or Vertical.
     [pageControllerVertical setHHPageViewType:HHPageViewVerticalType];
 
-    //Tell PageController to show page from this page index.
+    //Tell HHPageView to show page from this page index.
     [pageView setCurrentPage:3];
 
     //Show when you ready!
