@@ -8,34 +8,33 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum HHPageControlType
-{
-    HHPageControlHorizontalType = 0,HHPageControlVerticalType = 1
+typedef enum HHPageControlType {
+    HHPageControlHorizontalType = 0,
+    HHPageControlVerticalType = 1
 }HHPageControlType;
 
 @class HHPageController;
 
 @protocol HHPageControllerDelegate;
 
-@interface HHPageController : UIView
-{
+@interface HHPageController : UIView {
     @private
     UIImage *activeImage, *inactiveImage;
-    int noOfPages;
-    int currentPage;
+    NSInteger noOfPages;
+    NSInteger currentPage;
     HHPageControlType pageControllerType;
 }
 @property (nonatomic, retain) id<HHPageControllerDelegate> delegate;
 @property (nonatomic, retain) UIScrollView *baseScrollView;
 
 - (void) setImageActiveState:(UIImage *)active InActiveState:(UIImage *)inactive;
-- (void) setNumberOfPages:(int)pages;
-- (void) setCurrentPage:(int)current;
+- (void) setNumberOfPages:(NSInteger)pages;
+- (void) setCurrentPage:(NSInteger)current;
 - (void) load;
-- (void) updateStateForPageNumber:(int)page;
+- (void) updateStateForPageNumber:(NSInteger)page;
 - (void) setHHPageControlType:(HHPageControlType)pageControllertype;
 @end
 
 @protocol HHPageControllerDelegate<NSObject>
-- (void) HHPageController:(HHPageController *)pageController currentIndex:(int)currentIndex;
+- (void) HHPageController:(HHPageController *)pageController currentIndex:(NSInteger)currentIndex;
 @end

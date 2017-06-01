@@ -7,12 +7,19 @@
 //
 
 #import "ViewController.h"
+#import "HHPageController.h"
 
 #define HORIZONTAL_SCROLLVIEW_TAG 1
 #define VERTICAL_SCROLLVIEW_TAG 2
 
-@interface ViewController ()
-
+@interface ViewController ()<HHPageControllerDelegate> {
+    
+    IBOutlet HHPageController *pageController;
+    IBOutlet HHPageController *pageControllerVertical;
+    
+    IBOutlet UIScrollView *scrollView;
+    IBOutlet UIScrollView *scrollViewVertical;
+}
 @end
 
 @implementation ViewController
@@ -24,19 +31,19 @@
 }
 
 #pragma mark - Add Pages To ScrollView (Testing)
-- (void) addNoOfPages:(int)pages{
+- (void) addNoOfPages:(NSInteger)pages {
     
-    int numberOfPages = pages;
+    NSInteger numberOfPages = pages;
     
-    int x = 0; //start X position inside scrollview
-    int y = 0; //start Y position inside scrollview
-    int w = scrollView.frame.size.width; //width of page
-    int h = scrollView.frame.size.height; //height of page
+    NSInteger x = 0; //start X position inside scrollview
+    NSInteger y = 0; //start Y position inside scrollview
+    NSInteger w = scrollView.frame.size.width; //width of page
+    NSInteger h = scrollView.frame.size.height; //height of page
     
     //For testing we're adding UILabels.
-    
     for(int i = 1; i<= numberOfPages; i++) {
         UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(x, y, w, h)];
+        lbl.textColor = [UIColor whiteColor];
         [lbl setBackgroundColor:[UIColor colorWithRed:[self getRandomInt] green:[self getRandomInt] blue:[self getRandomInt] alpha:1.0]];
         [lbl setText:[NSString stringWithFormat:@"Page No. %d",i]];
         [lbl setTextAlignment:NSTextAlignmentCenter];
@@ -51,16 +58,17 @@
     //set scrollview properties (needed for better work)
     [scrollView setPagingEnabled:YES];
     [scrollView setShowsHorizontalScrollIndicator:NO];
+    [scrollView setShowsVerticalScrollIndicator:NO];
 }
 
-- (void) addNoOfPagesVertically:(int)pages{
+- (void) addNoOfPagesVertically:(NSInteger)pages {
     
-    int numberOfPages = pages;
+    NSInteger numberOfPages = pages;
     
-    int x = 0; //start X position inside scrollview
-    int y = 0; //start Y position inside scrollview
-    int w = scrollViewVertical.frame.size.width; //width of page
-    int h = scrollViewVertical.frame.size.height; //height of page
+    NSInteger x = 0; //start X position inside scrollview
+    NSInteger y = 0; //start Y position inside scrollview
+    NSInteger w = scrollViewVertical.frame.size.width; //width of page
+    NSInteger h = scrollViewVertical.frame.size.height; //height of page
     
     //For testing we're adding UILabels.
     
@@ -79,10 +87,11 @@
     
     //set scrollview properties (needed for better work)
     [scrollViewVertical setPagingEnabled:YES];
+    [scrollViewVertical setShowsHorizontalScrollIndicator:NO];
     [scrollViewVertical setShowsVerticalScrollIndicator:NO];
 }
 
-- (void) configureHorizontalControllerWithTotalPages:(int)totalPages {
+- (void) configureHorizontalControllerWithTotalPages:(NSInteger)totalPages {
     
     //Set delegate to the page controller object. To handle page change event.
     [pageController setDelegate:self];
@@ -104,7 +113,7 @@
     [pageController load];
 }
 
-- (void) configureVerticalControllerWithTotalPages:(int)totalPages {
+- (void) configureVerticalControllerWithTotalPages:(NSInteger)totalPages {
     
     //Set delegate to the page controller object. To handle page change event.
     [pageControllerVertical setDelegate:self];
@@ -162,9 +171,7 @@
         [pageController1 load];
     */
     
-    int numberOfPages = 10;
-    
-    // Add your pages in scroll view.
+    NSInteger numberOfPages = 10;
     
     //Horizontal Controller ScrollView
     [self addNoOfPages:numberOfPages];
@@ -199,38 +206,31 @@
         if(scroll.tag == HORIZONTAL_SCROLLVIEW_TAG)
         {
             //horizontal
-            int pageWidth = scroll.frame.size.width;
-            int page = (floor((scroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1) + 1;
+            NSInteger pageWidth = scroll.frame.size.width;
+            NSInteger page = (floor((scroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1) + 1;
             [pageController updateStateForPageNumber:page];
         }else{
             //vertical
-            int pageHeight = scroll.frame.size.height;
-            int page = (floor((scroll.contentOffset.y - pageHeight / 2) / pageHeight) + 1) + 1;
+            NSInteger pageHeight = scroll.frame.size.height;
+            NSInteger page = (floor((scroll.contentOffset.y - pageHeight / 2) / pageHeight) + 1) + 1;
             [pageControllerVertical updateStateForPageNumber:page];
         }
     }
 }
 
 #pragma mark - HHPageController Delegate
-- (void) HHPageController:(HHPageController *)pController currentIndex:(int)currentIndex
-{
+- (void) HHPageController:(HHPageController *)pController currentIndex:(NSInteger)currentIndex {
     UIScrollView *baseScrollView = (UIScrollView *) [pController baseScrollView];
     
-    if(baseScrollView)
-    {
-        if(baseScrollView.tag == HORIZONTAL_SCROLLVIEW_TAG)
-        {
+    if(baseScrollView) {
+        if(baseScrollView.tag == HORIZONTAL_SCROLLVIEW_TAG) {
             //horizontal
             [baseScrollView setContentOffset:CGPointMake(currentIndex * scrollView.frame.size.width, 0) animated:YES];
-        }
-        else
-        {
+        } else {
             //vertical
             [baseScrollView setContentOffset:CGPointMake(0, currentIndex * scrollView.frame.size.height) animated:YES];
         }
-    }
-    else
-    {
+    } else {
         //If you've only single HHPageController for any of the view then no need to set baseScrollView.
         NSLog(@"You forgot to set baseScrollView for the HHPageController object!");
     }

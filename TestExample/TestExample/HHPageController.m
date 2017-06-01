@@ -22,11 +22,11 @@
     inactiveImage = inactive;
 }
 
-- (void) setNumberOfPages:(int)pages {
+- (void) setNumberOfPages:(NSInteger)pages {
     noOfPages = pages;
 }
 
-- (void) setCurrentPage:(int)current {
+- (void) setCurrentPage:(NSInteger)current {
     currentPage = current;
 }
 
@@ -43,20 +43,32 @@
     return inactiveImage.size;
 }
 
-- (CGRect) stateFrameWithX:(int)x Y:(int)y {
+- (CGRect) stateHorizontalFrameWithX:(CGFloat)x Y:(CGFloat)y {
     return CGRectMake(x, y, [self activeSize].width + margin_space, [self activeSize].height);
 }
 
+- (CGRect) stateVerticalFrameWithX:(CGFloat)x Y:(CGFloat)y {
+    return CGRectMake(x, y, [self activeSize].width, [self activeSize].height + margin_space);
+}
+
+- (CGFloat) getXforHorizontalHHPage {
+    return (((([self activeSize].width + margin_space) * noOfPages)/CGRectGetWidth(self.frame)) * 100.0);
+}
+    
+- (CGFloat) getYforVerticalHHPage {
+    return (((([self activeSize].height + margin_space) * noOfPages)/CGRectGetHeight(self.frame)) * [self activeSize].width);
+}
+
 #pragma mark - User tap / Delegate Call
-- (void) callDelegateForPageChange:(int)page {
+- (void) callDelegateForPageChange:(NSInteger)page {
     
     [self updateStateForPageNumber:page];
 
-    if([self.delegate respondsToSelector:@selector(HHPageController:currentIndex:)])
-    {
-        int jumpToIndex = currentPage;
-        if(jumpToIndex>0)
-        [self.delegate HHPageController:self currentIndex:jumpToIndex-1];
+    if([self.delegate respondsToSelector:@selector(HHPageController:currentIndex:)]) {
+        NSInteger jumpToIndex = currentPage;
+        if(jumpToIndex>0) {
+            [self.delegate HHPageController:self currentIndex:jumpToIndex-1];
+        }
     }
 }
 
@@ -66,8 +78,8 @@
 
 #pragma mark - Add States
 - (void) addStates {
-    int x = 0;
-    for(int index = 1; index <= noOfPages; index++) {
+    CGFloat x = [self getXforHorizontalHHPage];
+    for(NSInteger index = 1; index <= noOfPages; index++) {
         UIButton *btnState = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnState addTarget:self action:@selector(userTap:) forControlEvents:UIControlEventTouchUpInside];
         [btnState setTag:index];
@@ -76,15 +88,16 @@
         if(index == currentPage) {
             [btnState setSelected:YES];
         }
-        [btnState setFrame:[self stateFrameWithX:x Y:0]];
+        [btnState setFrame:[self stateHorizontalFrameWithX:x Y:0.0]];
         [self addSubview:btnState];
+        btnState.center = CGPointMake(btnState.center.x, CGRectGetHeight(self.frame)/2.0);
         x+=btnState.frame.size.width;
     }
 }
 
 - (void) addStatesVertically {
-    int y = 0;
-    for(int index = 1; index <= noOfPages; index++) {
+    CGFloat y = [self getYforVerticalHHPage];
+    for(NSInteger index = 1; index <= noOfPages; index++) {
         UIButton *btnState = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnState addTarget:self action:@selector(userTap:) forControlEvents:UIControlEventTouchUpInside];
         [btnState setTag:index];
@@ -93,8 +106,9 @@
         if(index == currentPage) {
             [btnState setSelected:YES];
         }
-        [btnState setFrame:[self stateFrameWithX:0 Y:y]];
+        [btnState setFrame:[self stateVerticalFrameWithX:0.0 Y:y]];
         [self addSubview:btnState];
+        btnState.center = CGPointMake(CGRectGetWidth(self.frame)/2.0, btnState.center.y);
         y+=btnState.frame.size.height;
     }
 }
@@ -103,10 +117,12 @@
 - (void) updateContainerViewFrame {
     self.frame = CGRectMake(margin_space, self.frame.origin.y, noOfPages * [self activeSize].width + (margin_space * noOfPages), [self activeSize].height);
     self.center = CGPointMake([self superview].center.x, self.frame.origin.y);
+    NSLog(@"%@", NSStringFromCGRect(self.frame));
 }
 
 - (void) updateVerticalContainerViewFrame {
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, [self activeSize].width, noOfPages * [self activeSize].height + (margin_space * noOfPages));
+    NSLog(@"%@", NSStringFromCGRect(self.frame));
 }
 
 #pragma mark - Remove Self 
@@ -120,10 +136,10 @@
     if(noOfPages!=0 && noOfPages > 0 && currentPage<=noOfPages) {
         if(activeImage && inactiveImage) {
             if(pageControllerType == HHPageControlHorizontalType){
-                [self updateContainerViewFrame];
+//                [self updateContainerViewFrame];
                 [self addStates];
             }else{
-                [self updateVerticalContainerViewFrame];
+//                [self updateVerticalContainerViewFrame];
                 [self addStatesVertically];
             }
 
@@ -144,7 +160,7 @@
 }
 
 #pragma mark - Update States For State Change Event
-- (void) changeButtonStateForTag:(int)tag {
+- (void) changeButtonStateForTag:(NSInteger)tag {
     for(int index = 1; index <= noOfPages; index++) {
         UIButton *btnState = (UIButton *)[self viewWithTag:index];
         [btnState setImage:inactiveImage forState:UIControlStateNormal];
@@ -157,7 +173,7 @@
     }
 }
 
-- (void) updateStateForPageNumber:(int)page {
+- (void) updateStateForPageNumber:(NSInteger)page {
     if(page<=noOfPages && noOfPages!=0 && page!=currentPage) {
         if(page == 0) page = 1;
         [self changeButtonStateForTag:page];
