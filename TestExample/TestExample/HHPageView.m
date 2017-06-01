@@ -15,6 +15,10 @@
 @implementation HHPageView
 @synthesize delegate;
 @synthesize baseScrollView;
+    
+- (void) awakeFromNib {
+    [super awakeFromNib];
+}
 
 #pragma mark - Setters
 - (void) setImageActiveState:(UIImage *)active InActiveState:(UIImage *)inactive {
@@ -77,7 +81,7 @@
 }
 
 #pragma mark - Add States
-- (void) addStates {
+- (void) addStatesHorizontally {
     CGFloat x = [self getXforHorizontalHHPage];
     for(NSInteger index = 1; index <= noOfPages; index++) {
         UIButton *btnState = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -113,18 +117,6 @@
     }
 }
 
-#pragma mark - Update Self 
-- (void) updateContainerViewFrame {
-    self.frame = CGRectMake(margin_space, self.frame.origin.y, noOfPages * [self activeSize].width + (margin_space * noOfPages), [self activeSize].height);
-    self.center = CGPointMake([self superview].center.x, self.frame.origin.y);
-    NSLog(@"%@", NSStringFromCGRect(self.frame));
-}
-
-- (void) updateVerticalContainerViewFrame {
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, [self activeSize].width, noOfPages * [self activeSize].height + (margin_space * noOfPages));
-    NSLog(@"%@", NSStringFromCGRect(self.frame));
-}
-
 #pragma mark - Remove Self 
 - (void) removeInErrorCase {
     [self setBackgroundColor:[UIColor clearColor]];
@@ -136,7 +128,7 @@
     if(noOfPages!=0 && noOfPages > 0 && currentPage<=noOfPages) {
         if(activeImage && inactiveImage) {
             if(pageControllerType == HHPageViewHorizontalType){
-                [self addStates];
+                [self addStatesHorizontally];
             }else{
                 [self addStatesVertically];
             }
@@ -159,7 +151,7 @@
 
 #pragma mark - Update States For State Change Event
 - (void) changeButtonStateForTag:(NSInteger)tag {
-    for(int index = 1; index <= noOfPages; index++) {
+    for(NSInteger index = 1; index <= noOfPages; index++) {
         UIButton *btnState = (UIButton *)[self viewWithTag:index];
         [btnState setImage:inactiveImage forState:UIControlStateNormal];
         [btnState setImage:activeImage forState:UIControlStateSelected];
