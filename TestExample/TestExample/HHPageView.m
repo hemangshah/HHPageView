@@ -122,7 +122,7 @@
     [self setBackgroundColor:[UIColor clearColor]];
     [self removeFromSuperview];
 }
-
+    
 #pragma mark - Load Controller
 - (void) load {
     if(noOfPages!=0 && noOfPages > 0 && currentPage<=noOfPages) {

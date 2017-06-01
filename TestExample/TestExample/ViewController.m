@@ -31,7 +31,7 @@
 }
 
 #pragma mark - Add Pages To ScrollView (Testing)
-- (void) addNoOfPages:(NSInteger)pages {
+- (void) addNoOfPagesHorizontally:(NSInteger)pages {
     
     NSInteger numberOfPages = pages;
     
@@ -74,6 +74,7 @@
     
     for(int i = 1; i<= numberOfPages; i++) {
         UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(x, y, w, h)];
+        lbl.textColor = [UIColor whiteColor];
         [lbl setBackgroundColor:[UIColor colorWithRed:[self getRandomInt] green:[self getRandomInt] blue:[self getRandomInt] alpha:1.0]];
         [lbl setText:[NSString stringWithFormat:@"Page No. %d",i]];
         [lbl setTextAlignment:NSTextAlignmentCenter];
@@ -171,15 +172,27 @@
         [pageController1 load];
     */
     
+
+}
+    
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
     NSInteger numberOfPages = 10;
     
     //Horizontal Controller ScrollView
-    [self addNoOfPages:numberOfPages];
+    [self addNoOfPagesHorizontally:numberOfPages];
     [self configureHorizontalControllerWithTotalPages:numberOfPages];
     
     //Vertical Controller ScrollView
     [self addNoOfPagesVertically:numberOfPages];
     [self configureVerticalControllerWithTotalPages:numberOfPages];
+    
+    scrollView.layer.borderColor = UIColor.whiteColor.CGColor;
+    scrollView.layer.borderWidth = 5.0;
+    
+    scrollViewVertical.layer.borderColor = UIColor.whiteColor.CGColor;
+    scrollViewVertical.layer.borderWidth = 5.0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -221,13 +234,18 @@
 #pragma mark - HHPageController Delegate
 - (void) HHPageView:(HHPageView *)pageView currentIndex:(NSInteger)currentIndex {
     UIScrollView *baseScrollView = (UIScrollView *) [pageView baseScrollView];
+    
+    NSLog(@"%@", NSStringFromCGSize(baseScrollView.bounds.size));
+    NSLog(@"%@", NSStringFromCGSize(scrollView.bounds.size));
+    NSLog(@"%@", NSStringFromCGSize(scrollViewVertical.bounds.size));
+    
     if(baseScrollView) {
         if(baseScrollView.tag == HORIZONTAL_SCROLLVIEW_TAG) {
             //horizontal
             [baseScrollView setContentOffset:CGPointMake(currentIndex * scrollView.frame.size.width, 0) animated:YES];
         } else {
             //vertical
-            [baseScrollView setContentOffset:CGPointMake(0, currentIndex * scrollView.frame.size.height) animated:YES];
+            [baseScrollView setContentOffset:CGPointMake(0, currentIndex * scrollViewVertical.frame.size.height) animated:YES];
         }
     } else {
         //If you've only single HHPageController for any of the view then no need to set baseScrollView.

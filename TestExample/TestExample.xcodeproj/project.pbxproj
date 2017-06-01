@@ -23,6 +23,7 @@
 		8FE6754F17C4C0EB0017D32F /* unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FE6754B17C4C0EB0017D32F /* unselected.png */; };
 		8FE6755017C4C0EB0017D32F /* unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FE6754C17C4C0EB0017D32F /* unselected@2x.png */; };
 		8FE6755317C4C0F40017D32F /* HHPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE6755217C4C0F40017D32F /* HHPageView.m */; };
+		F1744FD41EE0178B008253F0 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1744FD31EE0178B008253F0 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		8FE6754C17C4C0EB0017D32F /* unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unselected@2x.png"; sourceTree = "<group>"; };
 		8FE6755117C4C0F40017D32F /* HHPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHPageView.h; sourceTree = "<group>"; };
 		8FE6755217C4C0F40017D32F /* HHPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHPageView.m; sourceTree = "<group>"; };
+		F1744FD31EE0178B008253F0 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				8FE6753E17C4C0760017D32F /* ViewController.m */,
 				8FE6754017C4C0760017D32F /* ViewController.xib */,
 				8FE6752C17C4C0750017D32F /* Supporting Files */,
+				F1744FD31EE0178B008253F0 /* Launch Screen.storyboard */,
 			);
 			path = TestExample;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				8FE6754D17C4C0EB0017D32F /* selected.png in Resources */,
 				8FE6754E17C4C0EB0017D32F /* selected@2x.png in Resources */,
 				8FE6754F17C4C0EB0017D32F /* unselected.png in Resources */,
+				F1744FD41EE0178B008253F0 /* Launch Screen.storyboard in Resources */,
 				8FE6755017C4C0EB0017D32F /* unselected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
