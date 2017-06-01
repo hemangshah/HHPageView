@@ -18,6 +18,12 @@
 5. Dynamic
 6. Easy to setup and use.
 
+## Screenshot
+<table>
+<tr>
+<td><img src = "https://github.com/hemangshah/HHPageView/blob/master/TestExample/Screenshots/1.png" alt = "Usage example"></td>
+</tr>
+</table>
     
 ## ToDo[s]
 
