@@ -11,6 +11,7 @@
 
 - Add `HHPageView.h` and  `HHPageView.m` to your Project. 
 - You need to provide images for active and inactive state. You can use [these](https://github.com/hemangshah/HHPageView/tree/master/TestExample/TestExample/appImages) inside the sample project.
+- Read the [usage](#usage).
 - **All set**.
 
 ## Usage
