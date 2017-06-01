@@ -45,7 +45,7 @@
         UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(x, y, w, h)];
         lbl.textColor = [UIColor whiteColor];
         [lbl setBackgroundColor:[UIColor colorWithRed:[self getRandomInt] green:[self getRandomInt] blue:[self getRandomInt] alpha:1.0]];
-        [lbl setText:[NSString stringWithFormat:@"Page #%d",i]];
+        [lbl setText:[NSString stringWithFormat:@"Page #%ld",(long)i]];
         [lbl setTextAlignment:NSTextAlignmentCenter];
         lbl.font = [UIFont boldSystemFontOfSize:17.f];
         [scrollView addSubview:lbl];
@@ -76,7 +76,7 @@
         UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(x, y, w, h)];
         lbl.textColor = [UIColor whiteColor];
         [lbl setBackgroundColor:[UIColor colorWithRed:[self getRandomInt] green:[self getRandomInt] blue:[self getRandomInt] alpha:1.0]];
-        [lbl setText:[NSString stringWithFormat:@"Page #%d",i]];
+        [lbl setText:[NSString stringWithFormat:@"Page #%ld",(long)i]];
         [lbl setTextAlignment:NSTextAlignmentCenter];
         lbl.font = [UIFont boldSystemFontOfSize:17.f];
         [scrollViewVertical addSubview:lbl];
@@ -96,20 +96,20 @@
     
     //Set delegate to the page controller object. To handle page change event.
     [pageController setDelegate:self];
-    
+
     //Set Base View
-    //Note : If you've only single HHPageView for any of the view then no need to set baseScrollView.
+    //Note: You don't need to set baseScrollView if there's only one HHPageView per view controller.
     [pageController setBaseScrollView:scrollView];
-    
+
     //Set Images for Active and Inactive state.
     [pageController setImageActiveState:[UIImage  imageNamed:@"selected.png"] InActiveState:[UIImage  imageNamed:@"unselected.png"]];
-    
+
     //Tell PageController, the number of pages you want to show.
     [pageController setNumberOfPages:totalPages];
-    
+
     //Tell PageController to show page from this page index.
     [pageController setCurrentPage:3];
-    
+
     //Show when you ready!
     [pageController load];
 }
@@ -119,9 +119,10 @@
     //Set delegate to the page controller object. To handle page change event.
     [pageControllerVertical setDelegate:self];
     
-    //Note : If you've only single HHPageView for any of the view then no need to set baseScrollView.
+    //Note: You don't need to set baseScrollView if there's only one HHPageView per view controller.
     [pageControllerVertical setBaseScrollView:scrollViewVertical];
     
+    //Set HHPageView Type: Horizontal or Vertical
     [pageControllerVertical setHHPageViewType:HHPageViewVerticalType];
     
     //Set Images for Active and Inactive state.
@@ -146,13 +147,13 @@
      
      IMPORTANT NOTES:
      
-     1. Never set tag for HHPageControl object.
+     1. Never set tag for HHPageView object.
      
-     2. If you've more than one scrollview in the same view, then have you set set tag for each of it. see scrollview and HHPageControl delegates for example.
+     2. If you've more than one scrollview in the same view, then have you set set tag for each of it. See scrollview and HHPageView delegates for example.
      
-     3. If you're adding HHPageControl vertically from IB then you've to set it manually until you want get exact output.
+     3. If you're adding HHPageView vertically from IB then you've to set it manually until you want get exact output.
      
-     4. These are the properties you always have to set, however you add HHPageControl, either in IB or dynamically.
+     4. These are the properties you always have to set, however you can add HHPageView, either in IB or dynamically.
      
         setDelegate:
         setBaseScrollView:
@@ -162,14 +163,14 @@
      
      5. You can also add HHPageView dynamically (see the example below)
      
-        HHPageControl *pageController1 = [[HHPageControl alloc] initWithFrame:CGRectMake(0, 120, 160, 32)];
-        [self.view addSubview:pageController1];
-        [pageController1 setDelegate:self];
-        [pageController1 setHHPageControlType:HHPageControlVerticalType];
-        [pageController1 setImageActiveState:[UIImage  imageNamed:@"selected.png"] InActiveState:[UIImage  imageNamed:@"unselected.png"]];
-        [pageController1 setNumberOfPages:numberOfPages];
-        [pageController1 setCurrentPage:3];
-        [pageController1 load];
+        HHPageView *pageView = [[HHPageView alloc] initWithFrame:CGRectMake(0, 120, 160, 32)];
+        [self.view addSubview:pageView];
+        [pageView setDelegate:self];
+        [pageView setHHPageControlType:HHPageViewVerticalType];
+        [pageView setImageActiveState:[UIImage  imageNamed:@"selected.png"] InActiveState:[UIImage  imageNamed:@"unselected.png"]];
+        [pageView setNumberOfPages:numberOfPages];
+        [pageView setCurrentPage:3];
+        [pageView load];
     */
 }
     
