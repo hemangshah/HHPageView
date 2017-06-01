@@ -35,7 +35,8 @@
 
 **2. You can also add `HHPageView` programmatically.** 
 
-<hr>
+    HHPageView *pageView = [[HHPageView alloc] initWithFrame:CGRectMake(0, 0, 160, 32)];
+    [self.view addSubview:pageView];
 
     //Set delegate to the pageView object. To handle page changes event.
     [pageView setDelegate:self];
