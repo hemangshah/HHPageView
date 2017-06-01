@@ -23,13 +23,13 @@
 
 1. Add in Storyboard or XIB.
 
-- Define IBOutlet HHPageView *pageView.
-- You can add a UIView of the size you want.
-- Change the view type to HHPageView from the Identity Inspector > Custom Class.
-- Add below code to customzie HHPageView.
+- Define IBOutlet `HHPageView *pageView`.
+- You can add a `UIView` of the size you want.
+- Change the view type to `HHPageView` from the Identity Inspector > Custom Class.
+- Add below code to customzie `HHPageView`.
 - Done!
 
-2. You can also add HHPageView programmatically.
+2. You can also add `HHPageView` programmatically.
 ``
 
     //Set delegate to the pageView object. To handle page changes event.
