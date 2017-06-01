@@ -25,7 +25,7 @@
 
 `@end`
 
-1. Add in Storyboard or XIB.
+** 1. Add in Storyboard or XIB.** 
 
 - Define IBOutlet `HHPageView *pageView`.
 - You can add a `UIView` of the size you want.
@@ -33,7 +33,7 @@
 - Add below code to customzie `HHPageView`.
 - Done!
 
-2. You can also add `HHPageView` programmatically.
+** 2. You can also add `HHPageView` programmatically.** 
 
 <hr>
 
