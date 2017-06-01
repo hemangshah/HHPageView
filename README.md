@@ -7,7 +7,11 @@
 
 ## Installation
 
-**Manually** - Add `HHPageView.h` and  `HHPageView.m` to your Project. **All set**.
+**Manually** 
+
+- Add `HHPageView.h` and  `HHPageView.m` to your Project. 
+- You need to provide images for active and inactive state. You can use the one which is inside the sample project.
+- **All set**.
 
 ## Usage
 
@@ -33,7 +37,7 @@
 
 <hr>
 
-    `//Set delegate to the pageView object. To handle page changes event.
+    //Set delegate to the pageView object. To handle page changes event.
     [pageView setDelegate:self];
 
     //Set Base View
@@ -53,7 +57,7 @@
     [pageView setCurrentPage:3];
 
     //Show when you ready!
-    [pageView load];`
+    [pageView load];
 
 ## Features
 
