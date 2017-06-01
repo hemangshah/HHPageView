@@ -56,11 +56,15 @@
 }
 
 - (CGFloat) getXforHorizontalHHPage {
-    return (((([self activeSize].width + margin_space) * noOfPages)/CGRectGetWidth(self.frame)) * 100.0);
+    CGFloat widthOfState = [self activeSize].width + margin_space;
+    CGFloat widthOfHHPageView = CGRectGetWidth(self.frame);
+    return (widthOfHHPageView - (noOfPages * widthOfState))/2.0;
 }
     
 - (CGFloat) getYforVerticalHHPage {
-    return (((([self activeSize].height + margin_space) * noOfPages)/CGRectGetHeight(self.frame)) * [self activeSize].width);
+    CGFloat heightOfState = [self activeSize].height + margin_space;
+    CGFloat heightOfHHPageView = CGRectGetHeight(self.frame);
+    return (heightOfHHPageView - (noOfPages * heightOfState))/2.0;
 }
 
 #pragma mark - User tap / Delegate Call
