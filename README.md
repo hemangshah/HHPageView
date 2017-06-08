@@ -5,6 +5,7 @@
 ![Platform](https://img.shields.io/badge/Platforms-iOS-red.svg)
 ![Language](https://img.shields.io/badge/Language-Objective--C-orange.svg)
 ![MadeWithLove](https://img.shields.io/badge/Made%20with%20%E2%9D%A4-India-green.svg)
+[![Blog](https://img.shields.io/badge/Blog-iKiwiTech.com-blue.svg)](http://www.ikiwitech.com)
 
 ## Installation
 
