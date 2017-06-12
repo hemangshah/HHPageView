@@ -1,4 +1,4 @@
-## HHPageView
+## HHPageView 🌀
 
 ![Build Status](https://travis-ci.org/hemangshah/HHPageView.svg?branch=master)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)
