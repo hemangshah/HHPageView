@@ -115,7 +115,7 @@ Please open an [issue](https://github.com/hemangshah/printer/issues/new).</b>
 
 ## Credits
 
-[**Hemang Shah**](www.about.me/hemang.shah)
+<b>[Hemang Shah](https://about.me/hemang.shah)</b>
 
 **You can shoot me an [email](http://www.google.com/recaptcha/mailhide/d?k=01IzGihUsyfigse2G9z80rBw==&c=vU7vyAaau8BctOAIJFwHVbKfgtIqQ4QLJaL73yhnB3k=) to contact.**
 
