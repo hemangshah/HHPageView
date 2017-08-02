@@ -111,7 +111,7 @@
 You can [watch](https://github.com/hemangshah/HHPageView/subscription) to <b>HHPageView</b> to see continuous updates. Stay tuned.
 
 <b>Have an idea for improvements of this class?
-Please open an [issue](https://github.com/hemangshah/printer/issues/new).</b>
+Please open an [issue](https://github.com/hemangshah/HHPageView/issues/new).</b>
 
 ## Credits
 
